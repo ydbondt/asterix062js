@@ -18,7 +18,8 @@ export class AsterixDataBlock {
 
     public getLength(): number {
         return Object.values(this)
-            .reduce((prevRecord=0, record: AsterixRecord) => prevRecord + record.getFullRecord().length);
+            .map((record: AsterixRecord) => record.getFullRecord().length)
+            .reduce((fullLength=0, length: number) => fullLength + length);
     }
 
 }

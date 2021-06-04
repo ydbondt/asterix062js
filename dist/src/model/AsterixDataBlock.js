@@ -11,7 +11,8 @@ class AsterixDataBlock {
     }
     getLength() {
         return Object.values(this)
-            .reduce((prevRecord = 0, record) => prevRecord + record.getFullRecord().length);
+            .map((record) => record.getFullRecord().length)
+            .reduce((fullLength = 0, length) => fullLength + length);
     }
 }
 exports.AsterixDataBlock = AsterixDataBlock;

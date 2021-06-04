@@ -10,6 +10,8 @@ export class ToAsterix062Convertor {
         let buffers: Buffer = asterixDataBlock.getRecords()
                                     .map(record => record.getFullRecord())
                                     .reduce((b1, b2) => Buffer.concat([b1, b2]));
+
+
         return Buffer.concat([this.getCategory(), len, buffers]);
     }
 

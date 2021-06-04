@@ -14,8 +14,9 @@ class Cat062FSpec {
             fspec[i] = 0b1;
         }
         let shift = (octet * 7) - this.fspec;
-        fspec[fspec.length - 1] = 1 << (shift > 0 ? shift : 1);
-        console.log("fspec = 1 << " + (shift > 0 ? shift : 1));
+        fspec[fspec.length - 1] = 1 << ((shift > 0) ? shift : this.fspec);
+        console.log("shift = " + shift);
+        console.log("fspec[" + (fspec.length - 1) + "] = " + ((shift > 0) ? "1 << shift" : "0b1"));
         return fspec;
     }
 }

@@ -15,9 +15,9 @@ class SicSac extends AsterixRecord_1.AsterixRecord {
     getRecord() {
         var sic = Buffer.alloc(1);
         var sac = Buffer.alloc(1);
-        sac.writeUInt8(this.sic); // sic
-        sic.writeUInt8(this.sac); // sac
-        return Buffer.concat([sic, sac]);
+        sic.writeUInt8(this.sic); // sic
+        sac.writeUInt8(this.sac); // sac
+        return Buffer.concat([sac, sic]);
     }
 }
 exports.SicSac = SicSac;

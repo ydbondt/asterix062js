@@ -13,17 +13,12 @@ export class Cat062FSpec {
         var octet = Math.round(this.fspec / 7);
         var fspec = Buffer.alloc(octet);
 
-        console.log("fspec = " + this.fspec);
-        console.log("octet = " + octet);
-
         for (var i=0;i<=octet;i++) {
             fspec[i] = 0b1;
         }
 
         let shift = (octet*7) - this.fspec;
-        fspec[fspec.length-1] = 1 << (shift > 0 ? shift : 1);
-
-        console.log("fspec = 1 << " + (shift > 0 ? shift : 1));
+        fspec[fspec.length-1] = 1 << ((shift > 0) ? shift : this.fspec);
 
         return fspec;
     }
