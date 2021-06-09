@@ -24,9 +24,17 @@ const AsterixDataBlock_1 = require("./src/model/AsterixDataBlock");
 const SicSac_1 = require("./src/model/records/SicSac");
 const TrackNumber_1 = require("./src/model/records/TrackNumber");
 let asterixMessage = new AsterixDataBlock_1.AsterixDataBlock();
-asterixMessage.sicSac = new SicSac_1.SicSac(1, 2);
+asterixMessage.sicSac = new SicSac_1.SicSac(241, 6);
 asterixMessage.trackNumber = new TrackNumber_1.TrackNumber(123);
-console.log(asterixMessage.toBuffer());
+/*asterixMessage.trackStatus = new TrackStatus(MON.MULTI_SENSOR,
+                                            SPI.DEFAULT_VALUE,
+                                            MRH.GEOMETRIC_ALTITUDE,
+                                            SRC.DEFAULT_HEIGHT,
+                                            CNF.CONFIRMED_TRACK,
+                                            FX.END_OF_DATA_ITEM);*/
+//asterixMessage.timestamp = new Timestamp(new Date());
+//asterixMessage.positionWGS84 = new PositionWGS84(50.917419, 4.115159);
+console.log(asterixMessage.getRecords().map(r => r.getFSpec()).map(fspec => fspec.getFRN()));
 const client = dgram.createSocket('udp4');
 client.connect(33003, 'localhost', () => {
     console.log("Connected !");

@@ -7,7 +7,7 @@ export class TrackNumber extends AsterixRecord {
         super();
     }
 
-    protected getFSpec(): Cat062FSpec {
+    public getFSpec(): Cat062FSpec {
         return Cat062FSpec.I062_040;
     }
 
@@ -17,6 +17,5 @@ export class TrackNumber extends AsterixRecord {
 
         return tracknumber;
     }
-
 
 }

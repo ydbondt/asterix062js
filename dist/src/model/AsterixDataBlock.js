@@ -6,8 +6,12 @@ class AsterixDataBlock {
     toBuffer() {
         return ToAsterix062Convertor_1.ToAsterix062Convertor.toBuffer(this);
     }
+    /**
+     * @returns asterix records sorted on their field reference number
+     */
     getRecords() {
-        return Object.values(this);
+        return Object.values(this)
+            .sort((a, b) => a.getFSpec().getFRN() - b.getFSpec().getFRN());
     }
     getLength() {
         return Object.values(this)
