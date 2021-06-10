@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FX = exports.CNF = exports.SRC = exports.MRH = exports.SPI = exports.MON = exports.TrackStatus = void 0;
-const AsterixRecord_1 = require("../AsterixRecord");
+const AsterixDataItem_1 = require("../AsterixDataItem");
 const Cat062FSpec_1 = require("../Cat062FSpec");
-class TrackStatus extends AsterixRecord_1.AsterixRecord {
+class TrackStatus extends AsterixDataItem_1.AsterixDataItem {
     constructor(mon, spi, mrh, src, cnf, fx) {
         super();
         this.mon = mon;
@@ -16,7 +16,7 @@ class TrackStatus extends AsterixRecord_1.AsterixRecord {
     getFSpec() {
         return Cat062FSpec_1.Cat062FSpec.I062_080;
     }
-    getRecord() {
+    getBuffer() {
         var trackStatus = Buffer.alloc(1);
         trackStatus[0] = this.mon.byteValue
             + this.spi.byteValue
@@ -25,7 +25,6 @@ class TrackStatus extends AsterixRecord_1.AsterixRecord {
             + this.src.byteValue
             + this.cnf.byteValue
             + this.fx.byteValue;
-        console.log(trackStatus);
         return trackStatus;
     }
 }

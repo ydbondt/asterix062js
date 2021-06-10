@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PositionWGS84 = void 0;
-const AsterixRecord_1 = require("../AsterixRecord");
+const AsterixDataItem_1 = require("../AsterixDataItem");
 const Cat062FSpec_1 = require("../Cat062FSpec");
 const LAT_LONG_WGS_PRECISION_4_BYTE_P25 = 180 / Math.pow(2, 25);
-class PositionWGS84 extends AsterixRecord_1.AsterixRecord {
+class PositionWGS84 extends AsterixDataItem_1.AsterixDataItem {
     constructor(lat, lon) {
         super();
         this.lat = lat;
@@ -13,7 +13,7 @@ class PositionWGS84 extends AsterixRecord_1.AsterixRecord {
     getFSpec() {
         return Cat062FSpec_1.Cat062FSpec.I062_105;
     }
-    getRecord() {
+    getBuffer() {
         var lat = Buffer.alloc(4);
         lat.writeUInt32BE(parseInt((this.lat / LAT_LONG_WGS_PRECISION_4_BYTE_P25 + "")));
         var lon = Buffer.alloc(4);

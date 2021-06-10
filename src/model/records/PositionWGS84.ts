@@ -1,9 +1,9 @@
-import { AsterixRecord } from "../AsterixRecord";
+import { AsterixDataItem } from "../AsterixDataItem";
 import { Cat062FSpec } from "../Cat062FSpec";
 
 const LAT_LONG_WGS_PRECISION_4_BYTE_P25 = 180 / Math.pow(2, 25);
 
-export class PositionWGS84 extends AsterixRecord {
+export class PositionWGS84 extends AsterixDataItem {
 
 
     public constructor(private readonly lat: number,
@@ -15,7 +15,7 @@ export class PositionWGS84 extends AsterixRecord {
         return Cat062FSpec.I062_105;
     }
 
-    public getRecord(): Buffer {
+    public getBuffer(): Buffer {
         var lat = Buffer.alloc(4);
 
         lat.writeUInt32BE(parseInt((this.lat / LAT_LONG_WGS_PRECISION_4_BYTE_P25 + "")));

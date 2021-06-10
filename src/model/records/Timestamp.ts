@@ -1,7 +1,7 @@
-import { AsterixRecord } from "../AsterixRecord";
+import { AsterixDataItem } from "../AsterixDataItem";
 import { Cat062FSpec } from "../Cat062FSpec";
 
-export class Timestamp extends AsterixRecord {
+export class Timestamp extends AsterixDataItem {
 
     public constructor(private readonly timestamp: Date) {
         super();
@@ -11,7 +11,7 @@ export class Timestamp extends AsterixRecord {
         return Cat062FSpec.I062_070;
     }
 
-    public getRecord(): Buffer {
+    public getBuffer(): Buffer {
         var hours = Buffer.alloc(1);
         hours.writeUInt8(this.timestamp.getHours());
 

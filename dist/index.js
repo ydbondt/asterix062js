@@ -20,13 +20,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dgram = __importStar(require("dgram"));
-const AsterixDataBlock_1 = require("./src/model/AsterixDataBlock");
+const Asterix062Record_1 = require("./src/model/Asterix062Record");
 const PositionWGS84_1 = require("./src/model/records/PositionWGS84");
 const SicSac_1 = require("./src/model/records/SicSac");
 const Timestamp_1 = require("./src/model/records/Timestamp");
 const TrackNumber_1 = require("./src/model/records/TrackNumber");
 const TrackStatus_1 = require("./src/model/records/TrackStatus");
-let asterixMessage = new AsterixDataBlock_1.AsterixDataBlock();
+let asterixMessage = new Asterix062Record_1.Asterix062Record();
 asterixMessage.sicSac = new SicSac_1.SicSac(241, 6);
 asterixMessage.trackNumber = new TrackNumber_1.TrackNumber(123);
 asterixMessage.trackStatus = new TrackStatus_1.TrackStatus(TrackStatus_1.MON.MONO_SENSOR, TrackStatus_1.SPI.SPI_PRESENT, TrackStatus_1.MRH.GEOMETRIC_ALTITUDE, TrackStatus_1.SRC.DEFAULT_HEIGHT, TrackStatus_1.CNF.CONFIRMED_TRACK, TrackStatus_1.FX.END_OF_DATA_ITEM);

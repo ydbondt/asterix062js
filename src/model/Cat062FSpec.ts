@@ -12,7 +12,7 @@ export class Cat062FSpec {
         this.frn = frn;
     }
 
-    public getFSpec(): Buffer {
+    public getBuffer(): Buffer {
         var octet = Math.ceil(this.frn / 7);
         var fspec = Buffer.alloc(octet);
 

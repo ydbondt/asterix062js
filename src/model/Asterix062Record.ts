@@ -1,12 +1,12 @@
 import { ToAsterix062Convertor } from '../convertor/ToAsterix062Convertor';
-import { AsterixRecord } from './AsterixRecord';
+import { AsterixDataItem } from './AsterixDataItem';
 import { PositionWGS84 } from './records/PositionWGS84';
 import { SicSac } from './records/SicSac';
 import { Timestamp } from './records/Timestamp';
 import { TrackNumber } from './records/TrackNumber';
 import { TrackStatus } from './records/TrackStatus';
 
-export class AsterixDataBlock {
+export class Asterix062Record {
 
     public sicSac: SicSac;
     public trackNumber: TrackNumber;
@@ -21,15 +21,9 @@ export class AsterixDataBlock {
     /**
      * @returns asterix records sorted on their field reference number
      */
-    public getRecords(): AsterixRecord[] {
-        return (Object.values(this) as AsterixRecord[])
+    public getRecords(): AsterixDataItem[] {
+        return (Object.values(this) as AsterixDataItem[])
                         .sort((a, b) => a.getFSpec().getFRN() - b.getFSpec().getFRN());
-    }
-
-    public getLength(): number {
-        return Object.values(this)
-            .map((record: AsterixRecord) => record.getFullRecord().length)
-            .reduce((fullLength=0, length: number) => fullLength + length);
     }
 
 }

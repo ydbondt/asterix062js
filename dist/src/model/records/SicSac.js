@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SicSac = void 0;
-const AsterixRecord_1 = require("../AsterixRecord");
+const AsterixDataItem_1 = require("../AsterixDataItem");
 const Cat062FSpec_1 = require("../Cat062FSpec");
-class SicSac extends AsterixRecord_1.AsterixRecord {
+class SicSac extends AsterixDataItem_1.AsterixDataItem {
     constructor(sic, sac) {
         super();
         this.sic = sic;
@@ -12,7 +12,7 @@ class SicSac extends AsterixRecord_1.AsterixRecord {
     getFSpec() {
         return Cat062FSpec_1.Cat062FSpec.I062_010;
     }
-    getRecord() {
+    getBuffer() {
         var sic = Buffer.alloc(1);
         var sac = Buffer.alloc(1);
         sic.writeUInt8(this.sic); // sic

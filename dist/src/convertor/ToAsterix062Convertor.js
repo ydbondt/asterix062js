@@ -5,13 +5,12 @@ class ToAsterix062Convertor {
     static toBuffer(asterixDataBlock) {
         var len = Buffer.alloc(2);
         let buffers = asterixDataBlock.getRecords()
-            .map(record => record.getRecord())
+            .map(record => record.getBuffer())
             .reduce((b1, b2) => Buffer.concat([b1, b2]));
         let allFrns = asterixDataBlock.getRecords()
             .map(record => record.getFSpec().getFRN());
         let buff = Buffer.concat([this.getCategory(), len, this.fspecs(allFrns), buffers]);
         buff.writeUInt16BE(buff.length, 1);
-        console.log(buff);
         return buff;
     }
     static getCategory() {

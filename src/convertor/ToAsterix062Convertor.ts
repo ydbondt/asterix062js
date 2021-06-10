@@ -1,13 +1,12 @@
-import { AsterixDataBlock } from "../model/AsterixDataBlock";
-import { AsterixRecord } from "../model/AsterixRecord";
+import { Asterix062Record } from "../model/Asterix062Record";
 
 export class ToAsterix062Convertor {
 
-    public static toBuffer(asterixDataBlock: AsterixDataBlock): Buffer {
+    public static toBuffer(asterixDataBlock: Asterix062Record): Buffer {
         var len: Buffer = Buffer.alloc(2);
 
         let buffers: Buffer = asterixDataBlock.getRecords()
-                                    .map(record => record.getRecord())
+                                    .map(record => record.getBuffer())
                                     .reduce((b1, b2) => Buffer.concat([b1, b2]));
 
         let allFrns: number[] = asterixDataBlock.getRecords()
@@ -16,7 +15,6 @@ export class ToAsterix062Convertor {
         let buff = Buffer.concat([this.getCategory(), len, this.fspecs(allFrns), buffers]);
         buff.writeUInt16BE(buff.length, 1);
 
-        console.log(buff);
         return buff;
     }
 

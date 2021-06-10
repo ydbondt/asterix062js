@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TrackNumber = void 0;
-const AsterixRecord_1 = require("../AsterixRecord");
+const AsterixDataItem_1 = require("../AsterixDataItem");
 const Cat062FSpec_1 = require("../Cat062FSpec");
-class TrackNumber extends AsterixRecord_1.AsterixRecord {
+class TrackNumber extends AsterixDataItem_1.AsterixDataItem {
     constructor(trackNumber) {
         super();
         this.trackNumber = trackNumber;
@@ -11,7 +11,7 @@ class TrackNumber extends AsterixRecord_1.AsterixRecord {
     getFSpec() {
         return Cat062FSpec_1.Cat062FSpec.I062_040;
     }
-    getRecord() {
+    getBuffer() {
         var tracknumber = Buffer.alloc(2);
         tracknumber.writeUInt16BE(this.trackNumber);
         return tracknumber;

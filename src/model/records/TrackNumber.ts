@@ -1,7 +1,7 @@
-import { AsterixRecord } from "../AsterixRecord";
+import { AsterixDataItem } from "../AsterixDataItem";
 import { Cat062FSpec } from "../Cat062FSpec";
 
-export class TrackNumber extends AsterixRecord {
+export class TrackNumber extends AsterixDataItem {
 
     public constructor(private readonly trackNumber: number) {
         super();
@@ -11,7 +11,7 @@ export class TrackNumber extends AsterixRecord {
         return Cat062FSpec.I062_040;
     }
 
-    public getRecord(): Buffer {
+    public getBuffer(): Buffer {
         var tracknumber = Buffer.alloc(2);
         tracknumber.writeUInt16BE(this.trackNumber);
 

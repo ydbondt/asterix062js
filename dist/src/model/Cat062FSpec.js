@@ -5,7 +5,7 @@ class Cat062FSpec {
     constructor(frn) {
         this.frn = frn;
     }
-    getFSpec() {
+    getBuffer() {
         var octet = Math.ceil(this.frn / 7);
         var fspec = Buffer.alloc(octet);
         for (var i = 0; i < octet - 1; i++) {

@@ -13,11 +13,6 @@ class AsterixDataBlock {
         return Object.values(this)
             .sort((a, b) => a.getFSpec().getFRN() - b.getFSpec().getFRN());
     }
-    getLength() {
-        return Object.values(this)
-            .map((record) => record.getFullRecord().length)
-            .reduce((fullLength = 0, length) => fullLength + length);
-    }
 }
 exports.AsterixDataBlock = AsterixDataBlock;
 //# sourceMappingURL=AsterixDataBlock.js.map

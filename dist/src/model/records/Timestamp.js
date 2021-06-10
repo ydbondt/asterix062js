@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Timestamp = void 0;
-const AsterixRecord_1 = require("../AsterixRecord");
+const AsterixDataItem_1 = require("../AsterixDataItem");
 const Cat062FSpec_1 = require("../Cat062FSpec");
-class Timestamp extends AsterixRecord_1.AsterixRecord {
+class Timestamp extends AsterixDataItem_1.AsterixDataItem {
     constructor(timestamp) {
         super();
         this.timestamp = timestamp;
@@ -11,7 +11,7 @@ class Timestamp extends AsterixRecord_1.AsterixRecord {
     getFSpec() {
         return Cat062FSpec_1.Cat062FSpec.I062_070;
     }
-    getRecord() {
+    getBuffer() {
         var hours = Buffer.alloc(1);
         hours.writeUInt8(this.timestamp.getHours());
         var minutes = Buffer.alloc(1);

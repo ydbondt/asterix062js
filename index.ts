@@ -1,12 +1,12 @@
 import * as dgram from "dgram";
-import { AsterixDataBlock } from "./src/model/AsterixDataBlock";
+import { Asterix062Record } from "./src/model/Asterix062Record";
 import { PositionWGS84 } from "./src/model/records/PositionWGS84";
 import { SicSac } from "./src/model/records/SicSac";
 import { Timestamp } from "./src/model/records/Timestamp";
 import { TrackNumber } from "./src/model/records/TrackNumber";
 import { CNF, FX, MON, MRH, SPI, SRC, TrackStatus } from "./src/model/records/TrackStatus";
 
-let asterixMessage = new AsterixDataBlock();
+let asterixMessage = new Asterix062Record();
 asterixMessage.sicSac = new SicSac(241, 6);
 asterixMessage.trackNumber = new TrackNumber(123);
 asterixMessage.trackStatus = new TrackStatus(MON.MONO_SENSOR,
