@@ -4,24 +4,33 @@ exports.ToAsterix062Convertor = void 0;
 class ToAsterix062Convertor {
     static toBuffer(asterixDataBlock) {
         var len = Buffer.alloc(2);
-        let length = this.getCategory().length + asterixDataBlock.getLength() + len.length;
-        len.writeUInt16BE(length);
-        console.log(length);
-        /*let buffers: Buffer = asterixDataBlock.getRecords()
-                                    .map(record => record.getFullRecord())
-                                    .reduce((b1, b2) => Buffer.concat([b1, b2]));*/
-        let fspecs = asterixDataBlock.getRecords()
-            .map(record => record.getFSpec().getFSpec())
-            .reduce((b1, b2) => Buffer.concat([b1, b2]));
-        let records = asterixDataBlock.getRecords()
+        let buffers = asterixDataBlock.getRecords()
             .map(record => record.getRecord())
             .reduce((b1, b2) => Buffer.concat([b1, b2]));
-        return Buffer.concat([this.getCategory(), len, fspecs, records]);
+        let allFrns = asterixDataBlock.getRecords()
+            .map(record => record.getFSpec().getFRN());
+        let buff = Buffer.concat([this.getCategory(), len, this.fspecs(allFrns), buffers]);
+        buff.writeUInt16BE(buff.length, 1);
+        console.log(buff);
+        return buff;
     }
     static getCategory() {
         var cat = Buffer.alloc(1);
         cat.writeUInt8(62);
         return cat;
+    }
+    static fspecs(frns) {
+        const maxFrns = Math.max(...frns);
+        const octet = Math.ceil(maxFrns / 7);
+        const fspec = Buffer.alloc(octet);
+        for (var i = 0; i < octet - 1; i++) {
+            fspec[i] = 0b1;
+        }
+        for (const frn of frns) {
+            const shift = 8 - (frn % 7);
+            fspec[Math.floor(frn / 7)] |= (1 << shift);
+        }
+        return fspec;
     }
 }
 exports.ToAsterix062Convertor = ToAsterix062Convertor;

@@ -9,15 +9,15 @@ import { CNF, FX, MON, MRH, SPI, SRC, TrackStatus } from "./src/model/records/Tr
 let asterixMessage = new AsterixDataBlock();
 asterixMessage.sicSac = new SicSac(241, 6);
 asterixMessage.trackNumber = new TrackNumber(123);
-/*asterixMessage.trackStatus = new TrackStatus(MON.MULTI_SENSOR,
-                                            SPI.DEFAULT_VALUE,
+asterixMessage.trackStatus = new TrackStatus(MON.MONO_SENSOR,
+                                            SPI.SPI_PRESENT,
                                             MRH.GEOMETRIC_ALTITUDE,
                                             SRC.DEFAULT_HEIGHT,
                                             CNF.CONFIRMED_TRACK,
-                                            FX.END_OF_DATA_ITEM);*/
+                                            FX.END_OF_DATA_ITEM);
 
-//asterixMessage.timestamp = new Timestamp(new Date());
-//asterixMessage.positionWGS84 = new PositionWGS84(50.917419, 4.115159);
+asterixMessage.timestamp = new Timestamp(new Date());
+asterixMessage.positionWGS84 = new PositionWGS84(50.917419, 4.115159);
 
 
 console.log(asterixMessage.getRecords().map(r => r.getFSpec()).map(fspec => fspec.getFRN()));

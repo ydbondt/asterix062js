@@ -18,13 +18,13 @@ export class TrackStatus extends AsterixRecord {
 
     public getRecord(): Buffer {
         var trackStatus = Buffer.alloc(1);
-        trackStatus[0] = this.mon.byteValue;
-        trackStatus[0] &= this.spi.byteValue;
-        trackStatus[0] &= this.mrh.byteValue;
-        trackStatus[0] &= this.src.byteValue;
-        trackStatus[0] &= this.cnf.byteValue;
-        trackStatus[0] &= this.fx.byteValue;
-
+        trackStatus[0] = this.mon.byteValue
+                        + this.spi.byteValue
+                        + this.spi.byteValue
+                        + this.mrh.byteValue
+                        + this.src.byteValue
+                        + this.cnf.byteValue
+                        + this.fx.byteValue;
 
         return trackStatus;
     }
