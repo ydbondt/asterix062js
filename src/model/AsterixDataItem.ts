@@ -1,8 +1,8 @@
-import { Cat062FSpec } from "./Cat062FSpec";
+import {AsterixFSpec} from "./AsterixFSpec";
 
 export abstract class AsterixDataItem {
 
-    public abstract getFSpec(): Cat062FSpec;
+    public abstract getFSpec(): AsterixFSpec;
     public abstract getBuffer(): Buffer;
 
 }

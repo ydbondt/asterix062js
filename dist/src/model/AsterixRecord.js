@@ -2,8 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AsterixRecord = void 0;
 class AsterixRecord {
-    getFullRecord() {
-        return Buffer.concat([this.getFSpec().getFSpec(), this.getRecord()]);
+    /**
+     * @returns asterix records sorted on their field reference number
+     */
+    getRecords() {
+        return Object.values(this)
+            .sort((a, b) => a.getFSpec().getFRN() - b.getFSpec().getFRN());
     }
 }
 exports.AsterixRecord = AsterixRecord;

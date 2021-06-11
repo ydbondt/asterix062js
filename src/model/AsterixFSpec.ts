@@ -2,7 +2,7 @@ export abstract class AsterixFSpec {
 
     private frn: number;
 
-    private constructor(frn: number) {
+    protected constructor(frn: number) {
         this.frn = frn;
     }
 

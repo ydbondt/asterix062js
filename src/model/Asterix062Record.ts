@@ -1,29 +1,23 @@
-import { ToAsterix062Convertor } from '../convertor/ToAsterix062Convertor';
-import { AsterixDataItem } from './AsterixDataItem';
-import { PositionWGS84 } from './records/PositionWGS84';
-import { SicSac } from './records/SicSac';
-import { Timestamp } from './records/Timestamp';
-import { TrackNumber } from './records/TrackNumber';
-import { TrackStatus } from './records/TrackStatus';
+import {SicSac} from "./records/SicSac";
+import {TrackNumber} from "./records/TrackNumber";
+import {Timestamp} from "./records/Timestamp";
+import {TrackStatus} from "./records/TrackStatus";
+import {PositionWGS84} from "./records/PositionWGS84";
+import {ReservedExpansionField} from "./records/ReservedExpansionField";
+import {AsterixRecord} from "./AsterixRecord";
+import {FlightPlanRelatedData} from "./records/FlightPlanRelatedData";
+import {ToAsterix062Convertor} from "../convertor/ToAsterix062Convertor";
 
-export class Asterix062Record {
+export class Asterix062Record extends AsterixRecord {
 
     public sicSac: SicSac;
     public trackNumber: TrackNumber;
     public timestamp: Timestamp;
     public trackStatus: TrackStatus;
     public positionWGS84: PositionWGS84;
+    public flightPlanRelatedData: FlightPlanRelatedData;
 
-    public toBuffer(): Buffer {
+    getBuffer(): Buffer {
         return ToAsterix062Convertor.toBuffer(this);
     }
-
-    /**
-     * @returns asterix records sorted on their field reference number
-     */
-    public getRecords(): AsterixDataItem[] {
-        return (Object.values(this) as AsterixDataItem[])
-                        .sort((a, b) => a.getFSpec().getFRN() - b.getFSpec().getFRN());
-    }
-
 }
